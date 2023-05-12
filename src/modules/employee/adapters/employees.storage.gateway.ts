@@ -78,7 +78,7 @@ export class EmployeeStorageGateway implements EmployeeRepository {
     }
     async saveEmployee(req: Request, res: Response): Promise<Response> {
         try {
-            const { name, surname, lastname, email } = req.body
+            const { name, surname, lastname, email }: SaveEmployeeDto = req.body
             const response = await pool.query('INSERT INTO employees(name, surname, lastname, email) VALUES($1, $2, $3, $4) RETURNING *;', [name, surname, lastname, email])
             // console.log(response)
             let body: ResponseApi<Employee> = {
@@ -98,7 +98,7 @@ export class EmployeeStorageGateway implements EmployeeRepository {
         try {
             if (this.isNumber(req.params.id)) {
                 const id: number = parseInt(req.params.id)
-                const { name, surname, lastname, email } = req.body
+                const { name, surname, lastname, email }: UpdateEmployeeDto = req.body
                 const response = await pool.query("UPDATE employees SET name = $2, surname = $3, lastname = $4, email = $5 WHERE id = $1 RETURNING *;", [id, name, surname, lastname, email])
                 let body: ResponseApi<Employee> = {
                     code: 200,

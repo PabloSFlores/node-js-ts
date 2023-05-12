@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
 import cors from 'cors'
-import router from './modules/employee/adapters/employees.controller';
+import employeeRouter from './modules/employee/adapters/employees.controller';
 const app: Application = express()
 
 // middlewares
@@ -13,7 +13,7 @@ app.get('/ping', (_req, res) => {
     console.log('Pinged')
     res.send('pong')
 })
-app.use(router)
+app.use(employeeRouter)
 
 app.listen(3000)
 console.log('Server on port', 3000)
