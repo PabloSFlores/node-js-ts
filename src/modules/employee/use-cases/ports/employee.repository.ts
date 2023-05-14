@@ -2,12 +2,11 @@ import { ResponseApi } from "@/kernel/types"
 import { Employee } from "../../entities/employee"
 import { SaveEmployeeDto } from "../../adapters/dto/save-employee"
 import { UpdateEmployeeDto } from "../../adapters/dto/update-employee"
-import { Request, Response } from "express"
 
 export interface EmployeeRepository {
-    findAll(req: Request, res: Response): Promise<Response>
-    findEmployee(req: Request, res: Response): Promise<Response>
-    saveEmployee(req: Request, res: Response): Promise<Response>
-    updateEmployee(req: Request, res: Response): Promise<Response>
-    deleteEmployee(req: Request, res: Response): Promise<Response>
+    findAll(): Promise<ResponseApi<Employee>>
+    findEmployee(payload: number): Promise<ResponseApi<Employee>>
+    saveEmployee(payload: SaveEmployeeDto): Promise<ResponseApi<Employee>>
+    updateEmployee(payload: UpdateEmployeeDto): Promise<ResponseApi<Employee>>
+    deleteEmployee(payload: number): Promise<ResponseApi<Employee>>
 }

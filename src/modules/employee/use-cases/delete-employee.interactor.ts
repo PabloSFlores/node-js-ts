@@ -2,14 +2,12 @@ import { UseCase } from "@/kernel/contracts"
 import { ResponseApi } from "@/kernel/types"
 import { Employee } from "../entities/employee"
 import { EmployeeRepository } from "./ports/employee.repository"
-import { Request, Response } from "express"
-import { ParamsDictionary } from "express-serve-static-core"
-import { ParsedQs } from "qs"
 
-export class DeleteEmployeeInteractor implements UseCase<number, Response> {
+
+export class DeleteEmployeeInteractor implements UseCase<number, ResponseApi<Employee>> {
     constructor(private readonly employeeRepository: EmployeeRepository){}
 
-    execute(req: Request, res: Response): Promise<Response> {
-        return this.employeeRepository.deleteEmployee(req, res)
+    execute(payload: number): Promise<ResponseApi<Employee>> {
+        return this.employeeRepository.deleteEmployee(payload)
     }
 }
