@@ -4,10 +4,10 @@ import { Employee } from "../entities/employee"
 import { EmployeeRepository } from "./ports/employee.repository"
 
 
-export class DeleteEmployeeInteractor implements UseCase<number, ResponseApi<Employee>> {
+export class DeleteEmployeeInteractor implements UseCase<number, Employee> {
     constructor(private readonly employeeRepository: EmployeeRepository){}
 
-    execute(payload: number): Promise<ResponseApi<Employee>> {
+    execute(payload: number): Promise<Employee> {
         return this.employeeRepository.deleteEmployee(payload)
     }
 }

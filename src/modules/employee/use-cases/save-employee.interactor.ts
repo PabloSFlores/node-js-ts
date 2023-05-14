@@ -4,9 +4,9 @@ import { ResponseApi } from "@/kernel/types"
 import { Employee } from "../entities/employee"
 import { EmployeeRepository } from "./ports/employee.repository"
 
-export class SaveEmployeeInteractor implements UseCase<SaveEmployeeDto, ResponseApi<Employee>> {
+export class SaveEmployeeInteractor implements UseCase<SaveEmployeeDto, Employee> {
     constructor(private readonly employeeRepository: EmployeeRepository){}
-    execute(payload: SaveEmployeeDto): Promise<ResponseApi<Employee>> {
+    execute(payload: SaveEmployeeDto): Promise<Employee> {
         return this.employeeRepository.saveEmployee(payload)        
     }
 }

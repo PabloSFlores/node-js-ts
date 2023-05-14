@@ -4,9 +4,9 @@ import { GetEmployeesDto } from "../adapters/dto/get-employees"
 import { Employee } from "../entities/employee"
 import { EmployeeRepository } from "./ports/employee.repository"
 
-export class GetEmployeesInteractor implements UseCase<GetEmployeesDto, ResponseApi<Employee>> {
+export class GetEmployeesInteractor implements UseCase<GetEmployeesDto, Employee[]> {
     constructor(private readonly employeeRepository: EmployeeRepository){}
-    execute(): Promise<ResponseApi<Employee>> {
+    execute(): Promise<Employee[]> {
         return this.employeeRepository.findAll()
     }
 }
